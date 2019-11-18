@@ -9,6 +9,7 @@
 #include <fstream>
 #include <chrono>
 #include "Menu.h"
+#include "DisjointSets.h"
 //#include "BinomialHeap.h"
 
 
@@ -17,7 +18,7 @@ using namespace std;
 int main(int argc, char* argv[]) {
     if (argc != 2) {
         cout << "\nPlease make sure you are including a filename in the command line!\n";
-        cout << "Ex: ./Lab10 data.txt\n\n";
+        cout << "Ex: ./Lab11 data.txt\n\n";
         return 0;
     }
 
@@ -49,14 +50,32 @@ int main(int argc, char* argv[]) {
     }
     myFile.close();
 
-    BinomialHeap heap;
+    for (int i = 0; i < valueCount; i++) {
+        for (int j = 0; j < valueCount; j ++) {
+            if (i != j && tempArr[i] == tempArr[j]) {
+                cout << argv[1] << " contains multiple entries of \"" << tempArr[i] << "\"\n";
+                cout << "Please make sure datafile does not contain duplicate elements!\n";
+                return 0;
+            }
+        }
+    }
+
+    int largest = 0;
+
+    for (int i = 0; i < valueCount; i++) {
+        if (tempArr[i] > largest) {
+            largest = tempArr[i];
+        }
+    }
+
+    DisjointSets set(largest);
 
     for (int i; i < valueCount; i++) {
-        heap.insert(tempArr[i]);
+        set.insert(tempArr[i]);
     }
     
-    Menu mainMenu(heap);
-    mainMenu.run();
+    // Menu mainMenu(heap);
+    // mainMenu.run();
 
     return 0;
 }

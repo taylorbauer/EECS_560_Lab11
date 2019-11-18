@@ -8,10 +8,10 @@
 #include "Menu.h"
 #include <iostream>
 using namespace std;
-//#include "BinomialHeap.h"
+#include "DisjointSets.h"
 
-Menu::Menu(BinomialHeap h) {
-    heap = h;
+Menu::Menu(DisjointSets sets) {
+    set = sets;
 }
 
 void Menu::run() {
@@ -27,22 +27,12 @@ void Menu::run() {
             << "Your selection: ";
         cin >> selection;
         if (selection == 1) {
-            cout << "What value would you like to insert (positive, unique integers only please): ";
-            int insertion = 0;
-            cin >> insertion;
-            heap.insert(insertion);
-            cout << "Successfully inserted " << insertion << " into the heap!\n";
             
         }
         else if (selection == 2) {
-           cout << "Deleting minimum value from the heap...\n";
-           heap.deleteMin();
-           cout << "Success!\n";
+
         }
         else if (selection == 3) {
-            cout << "Here is the heap in level-order:\n";
-            heap.print();
-
 
         }
         else {

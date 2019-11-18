@@ -7,6 +7,7 @@
 
 #ifndef MENU_H
 #define MENU_H
+#include "DisjointSets.h"
 
 
 //  The class that handles all user interaction and manages the heap
@@ -14,12 +15,12 @@ class Menu {
 public:
 
     // Constructor that requires a pre-existing heap
-    Menu(BinomialHeap h);
+    Menu(DisjointSets sets);
 
     //  Run the menu.  This is where all user interaction takes place.
     void run();
 private:
-    BinomialHeap heap;
+    DisjointSets set;
 
 };
 
