@@ -8,6 +8,9 @@ public:
     DisjointSets(int size);
     void insert(int value);
     Node** pointers;
+    bool unionize(int first, int second);
+    int find(int key);
+    int findWithoutCompression(int key);
 };
 
 #endif

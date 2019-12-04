@@ -74,8 +74,8 @@ int main(int argc, char* argv[]) {
         set.insert(tempArr[i]);
     }
     
-    // Menu mainMenu(heap);
-    // mainMenu.run();
+    Menu mainMenu(set);
+    mainMenu.run();
 
     return 0;
 }

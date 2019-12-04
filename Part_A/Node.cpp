@@ -2,5 +2,5 @@
 
 Node::Node(int value) {
     key = value;
-    parent = this;
+    parent = nullptr;
 }

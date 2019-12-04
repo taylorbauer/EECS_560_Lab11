@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "ostream": "cpp",
+        "memory": "cpp",
+        "utility": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "chrono": "cpp"
+    }
+}
