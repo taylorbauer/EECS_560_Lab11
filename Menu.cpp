@@ -20,15 +20,15 @@ void Menu::run() {
     cin.clear();
     int selection = 0;
     cout << "\nWelcome!\n";
-    while (selection < 7 && selection >= 0) {
+    while (selection < 12 && selection >= 0) {
         cout << "\nPlease choose one of the following commands:\n"
             << "1. MakeSet\n"
             << "2. Union\n"
             << "3. Find_Timer\n"
             << "4. Path Compression\n"
-            << "5. (For Lab report) Join all 1000 sets into 1\n"
-            << "6. (For Lab report) Call (and time) find on all 1000 elements\n"
-            << "7. Exit\n"
+            << "10. (For Lab report) Join all 1000 sets into 1\n"
+            << "11. (For Lab report) Call (and time) find on all 1000 elements\n"
+            << "12. Exit\n"
             << "Your selection: ";
         cin >> selection;
         if (selection == 1) {
@@ -77,14 +77,14 @@ void Menu::run() {
                 cout << "Unable to find " << input << ".\n";
             }
         }
-        else if (selection == 5) {
+        else if (selection == 10) {
             cout << "Starting...\n";
             for (int i = 1; i < 1000; i++) {
                 set.unionize(i, i + 1);
             }
             cout << "Done!\n";
         }
-        else if (selection == 6) {
+        else if (selection == 11) {
             for (int i = 1; i <= 1000; i++) {
                 auto start = chrono::high_resolution_clock::now(); 
                 set.findWithoutCompression(i);
