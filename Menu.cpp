@@ -6,26 +6,33 @@
 //
 
 #include "Menu.h"
+#include "Graph.h"
+#include "DisjointSets.h"
 #include <ctime>
 #include <iostream>
 #include <chrono>
 using namespace std;
-#include "DisjointSets.h"
 
 Menu::Menu(DisjointSets sets) {
     set = sets;
+    graph.buildGraph();
 }
 
 void Menu::run() {
     cin.clear();
     int selection = 0;
     cout << "\nWelcome!\n";
-    while (selection < 12 && selection >= 0) {
+    while (selection < 11 && selection >= 0 && selection != 5) {
         cout << "\nPlease choose one of the following commands:\n"
             << "1. MakeSet\n"
             << "2. Union\n"
             << "3. Find_Timer\n"
             << "4. Path Compression\n"
+            << "-- 5. UNUSED --\n"
+            << "6. BFS\n"
+            << "7. DFS\n"
+            << "8. Kruskal MST\n"
+            << "9. Prim MST\n"
             << "10. (For Lab report) Join all 1000 sets into 1\n"
             << "11. (For Lab report) Call (and time) find on all 1000 elements\n"
             << "12. Exit\n"
@@ -76,6 +83,18 @@ void Menu::run() {
             else {
                 cout << "Unable to find " << input << ".\n";
             }
+        }
+        else if (selection == 6) {
+            graph.bfs();
+        }
+        else if (selection == 7) {
+            graph.dfs();
+        }
+        else if (selection == 8) {
+            graph.kruskal();
+        }
+        else if (selection == 9) {
+
         }
         else if (selection == 10) {
             cout << "Starting...\n";

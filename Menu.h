@@ -8,6 +8,7 @@
 #ifndef MENU_H
 #define MENU_H
 #include "DisjointSets.h"
+#include "Graph.h"
 
 
 //  The class that handles all user interaction and manages the heap
@@ -21,6 +22,7 @@ public:
     void run();
 private:
     DisjointSets set;
+    Graph graph;
 
 };
 

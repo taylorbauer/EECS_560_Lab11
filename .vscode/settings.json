@@ -5,6 +5,22 @@
         "utility": "cpp",
         "__config": "cpp",
         "__nullptr": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "iosfwd": "cpp",
+        "new": "cpp",
+        "iostream": "cpp",
+        "__hash_table": "cpp",
+        "__split_buffer": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "iterator": "cpp",
+        "stack": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "fstream": "cpp"
     }
 }
