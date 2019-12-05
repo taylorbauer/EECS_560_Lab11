@@ -10,6 +10,7 @@ public:
     void bfs();
     void dfs();
     void kruskal();
+    void prim();
     int size;
     int** arr;
 };

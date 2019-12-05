@@ -73,7 +73,6 @@ void Graph::dfs() {  // Hacky, need to fix later
 }
 
 void Graph::kruskal() {
-    string s = "";
     int** c = new int*[size + 1];
     for (int i = 1; i <= size; i++) {
         c[i] = new int[size + 1];
@@ -93,7 +92,79 @@ void Graph::kruskal() {
 
 
     for (int i = 1; i <= size; i++) {
-        //  need to insert empty edges here probably
+        //edges[i] = new Edge;
+        for (int j = i + 1; j <= size; j++) {
+            if (arr[i][j] != -1) {
+                Edge* temp = new Edge;
+                temp->lower = i;
+                temp->higher = j;
+                temp->cost = arr[i][j];
+                edges[index] = temp;
+                //cout << "Created new edge: " << edges[index]->lower << ' ' << edges[index]->higher << " and costs " << edges[index]->cost << endl;
+                index ++;
+            }
+        }
+    }
+
+    bool sorted = false;    // lazy bubble sort our list of edges
+    while (!sorted)
+    {
+        sorted = true;
+        for (int i = 0; i < index - 1; i++)
+        {
+            //cout << i << " cost: " << edges[i]->cost << endl;
+            if (edges[i]->cost > edges[i+1]->cost) {
+                sorted = false;
+                Edge* temp = edges[i];
+                edges[i] = edges[i + 1];
+                edges[i + 1] = temp;
+            }
+        }
+    }
+
+
+    int s = 0;  // size of set we will be adding to
+    index = 0;
+    int totalCost = 0;
+    DisjointSets et;
+    for (int i = 1; i <= 5; i++) {
+        et.insert(i);
+    }
+    string output = "";
+    while (s < 4) {
+        Edge* x = edges[index];
+        index ++;
+        if (et.find(x->lower) != et.find(x->higher)) {
+            et.unionize(et.find(x->lower), et.find(x->higher));
+            totalCost += x->cost;
+            s++;
+            output = output + "(" + to_string(x->lower) + "," + to_string(x->higher) + "){" + to_string(x->cost) + "} ";
+        }
+    }
+    cout << output << endl 
+         << "Total cost: " << totalCost << endl;
+}
+
+void Graph::prim() {
+    int** c = new int*[size + 1];
+    for (int i = 1; i <= size; i++) {
+        c[i] = new int[size + 1];
+        c[i][0] = -1;
+        for (int j = 1; j <= size; j++) {
+            c[i][j] = arr[i][j];
+        }
+    }
+
+    DisjointSets sets(size);
+    for (int i = 1; i <= size; i++) {
+        sets.insert(i);
+    }
+    
+    Edge** edges = new Edge*[size * size];   
+    int index = 0;
+
+
+    for (int i = 1; i <= size; i++) {
         for (int j = i + 1; j <= size; j++) {
             if (arr[i][j] != -1) {
                 Edge* temp = new Edge;
@@ -106,22 +177,38 @@ void Graph::kruskal() {
         }
     }
 
-    for (int i = 0; i < index; i++) {       // lazy sort our list of edges
-        int lowestIndex = i;
-        int lowestCost = edges[index]->cost;
-        for (int j = i + 1; j < index; j ++) {
-            if (edges[j]->cost < lowestCost) {
-                lowestCost = edges[j]->cost;
-                lowestIndex = j;
+    bool sorted = false; 
+    {
+        sorted = true;
+        for (int i = 0; i < index - 1; i++)
+        {
+            if (edges[i]->cost > edges[i+1]->cost) {
+                sorted = false;
+                Edge* temp = edges[i];
+                edges[i] = edges[i + 1];
+                edges[i + 1] = temp;
             }
         }
-        Edge* temp = new Edge;
-        temp = edges[lowestIndex];
-        edges[lowestIndex] = edges[i];
-        edges[i] = temp;
-    }
+    }    
 
-    // for (int i = 0; i < index; i++) {
-    //     //cout << edges[i]->cost << endl;
-    // }
+    int s = 0;  // currently still mostly kruskal (and using disjoint sets), need to update to be truly prim
+    index = 0;
+    int totalCost = 0;
+    DisjointSets et;
+    for (int i = 1; i <= 5; i++) {
+        et.insert(i);
+    }
+    string output = "";
+    while (s < 4) {
+        Edge* x = edges[index];
+        index ++;
+        if (et.find(x->lower) != et.find(x->higher)) {
+            et.unionize(et.find(x->lower), et.find(x->higher));
+            totalCost += x->cost;
+            s++;
+            output = output + "(" + to_string(x->lower) + "," + to_string(x->higher) + "){" + to_string(x->cost) + "} ";
+        }
+    }
+    cout << output << endl 
+         << "Total cost: " << totalCost << endl;
 }

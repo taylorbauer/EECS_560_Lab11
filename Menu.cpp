@@ -94,7 +94,7 @@ void Menu::run() {
             graph.kruskal();
         }
         else if (selection == 9) {
-
+            graph.prim();
         }
         else if (selection == 10) {
             cout << "Starting...\n";
